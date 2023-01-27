@@ -77,10 +77,15 @@ export default function TrafficLight() {
 
     return (
         <div>
+
+            <div class=" bg-green-500 hidden ">go</div>
+            <div class=" bg-orange-500 hidden ">wait</div>
+            <div class=" bg-red-500 hidden ">stop</div>
+
             <div
-                class={` bg-${trafficLightState().context.colour}-500 `}
+                class={` p-12 bg-${trafficLightState().context.colour}-500 `}
             >
-                {trafficLightState().value}
+                <h2 class="text-black">{trafficLightState().value}</h2>
             </div>
 
             <button class="btn btn-primary" onClick={() => trafficLightActor.send({ type: 'NEXT' })}>Next</button>
