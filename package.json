@@ -14,12 +14,16 @@
     "@astrojs/preact": "^2.0.0",
     "@astrojs/solid-js": "^2.0.0",
     "@astrojs/svelte": "^2.0.0",
+    "@astrojs/tailwind": "^3.0.0",
     "@astrojs/vue": "^2.0.0",
+    "@tailwindcss/typography": "^0.5.9",
     "ashtro": "file:",
     "astro": "^2.0.2",
+    "daisyui": "^2.49.0",
     "preact": "^10.11.3",
     "solid-js": "^1.6.9",
     "svelte": "^3.55.1",
+    "tailwindcss": "^3.2.4",
     "vue": "^3.2.45"
   }
 }
