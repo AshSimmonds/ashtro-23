@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "@astrojs/preact": "^2.0.0",
-    "@astrojs/react": "^2.0.1",
     "@astrojs/solid-js": "^2.0.0",
     "@astrojs/svelte": "^2.0.0",
     "@astrojs/vue": "^2.0.0",
+    "ashtro": "file:",
     "astro": "^2.0.2",
     "preact": "^10.7.3",
     "react": "^18.1.0",
