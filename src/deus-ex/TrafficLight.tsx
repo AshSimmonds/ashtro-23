@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js'
-import { createMachine, interpret } from "xstate"
+import { assign, createMachine, interpret } from "xstate"
 import { inspect } from "@xstate/inspect"
 
 
@@ -14,7 +14,7 @@ interface TrafficLightContext {
 
 
 export const trafficLightMachine =
-    /** @xstate-layout N4IgpgJg5mDOIC5QBUBOBDAZpglgYwBkcoALAFwDoBxVMMAOwGIA5AUQA1kBtABgF1EoAA4B7WDjI4R9QSAAeiAEyKArBQDMATgAsADl0A2RToCM6gyYA0IAJ5KLFY7vUmei7dsUGA7LoC+ftZoWLiExOQUAIIAtgBGYKgsHNz8sqLiktKyCgjKalp6hsbaZhba1nYIupoUejxmWt7a3uYq6gFBGNj4RKSUAEqQSZy8Akgg6RJSMuM55iYU3t5eKgbaKiuKSxWIJr4UJhaabpru5oo82gGBIPQiEHCywd1hfWliU1mzuwYGFJq6YyrC6aY7eAzqHYIAC0um0i0ubXUgJMmhUKhKHRAz1CvQiNDoM2EH0yRPkShM8IBQKMPFBPHBkNsiHUinU-x4RkK9XU6lWWJxPXClBi8VQ7wy02yFKpgLRtPpjKhe10B152h0uhagI17RugteEUGEAlnzJOUUlP+cuBdLBEKhikWcNcls1xyB1z8QA */
+    /** @xstate-layout N4IgpgJg5mDOIC5QBcBOBDAZpglgYwBscoALZAOigHsBiAOQFEANAFQG0AGAXUVAAcqsHMhxUAdrxAAPRAGYO5AEwBWZQDYAHLI0BOXSoDsGgDQgAnnMWLyBxbYAsOgIz3VHIwF8PptFlyFiMnIAd3RhemZ2bkkBIRFxSRkEeSVVTW09HUMTc0RlWVlyDSdip2VFWXtZA2UvHwxsfCJSClhkKj4I1k4eJBBY4VEJPqSrJ3JlDlUM+w57RR0DUwsEeZ0Jjg1JtQMDRw4K+y9vEDEqCDhJX0aAlpjBQYSRxABaexyVpxdySur5LLUyicsh2dRA138zSC1HucSGiUQHGWiEUHHGWgqajUOiqsmUOm0YIhTUCFFCwlhj2GoCSSNyqym5B0zL09j2TkUTg4OKJDUhpPIbQ6lPi1OkiORCDUqPIJScBgJnMUug4amOHiAA */
     createMachine<TrafficLightContext>({
         id: "trafficlight",
         initial: "go",
@@ -23,9 +23,9 @@ export const trafficLightMachine =
         },
         states: {
             go: {
-                entry(context, event, meta) {
-                    context.colour = "green"
-                },
+                entry: assign({
+                    colour: "green",
+                }),
                 on: {
                     NEXT: {
                         target: "wait",
@@ -33,9 +33,9 @@ export const trafficLightMachine =
                 },
             },
             wait: {
-                entry(context, event, meta) {
-                    context.colour = "orange"
-                },
+                entry: assign({
+                    colour: "orange",
+                }),
                 on: {
                     NEXT: {
                         target: "stop",
@@ -43,16 +43,14 @@ export const trafficLightMachine =
                 },
             },
             stop: {
-                entry(context, event, meta) {
-                    context.colour = "red"
-                },
+                entry: assign({
+                    colour: "red",
+                }),
                 on: {
-                    NEXT: {
-                        target: "go",
-                    },
+                    NEXT: "go",
                 },
             },
-        },
+        },    
     })
 
 
